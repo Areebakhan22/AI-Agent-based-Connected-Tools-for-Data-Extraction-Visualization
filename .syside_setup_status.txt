@@ -1,0 +1,22 @@
+SysIDE Modeler Setup - COMPLETE
+===============================
+
+Prerequisites Installed:
+- Java: OpenJDK 21.0.9
+- Python: 3.13.3
+- Extension: sensmetry.syside-modeler v0.8.3
+
+Backend Tools:
+- Virtual environment: syside_venv/
+- SysIDE packages: syside 0.8.3, syside-license 0.3.3
+
+Next Steps in Cursor:
+1. Open OpsCon.sysml file
+2. Extension will activate automatically
+3. If prompted, use "Trial/Evaluation" mode for license
+4. Commands available:
+   - Ctrl+Shift+P → "Syside Modeler: Visualize current file"
+   - Or keyboard shortcut: Ctrl+Shift+V
+
+Virtual Environment Path:
+/home/ghazia/sysml-to-slides/syside_venv

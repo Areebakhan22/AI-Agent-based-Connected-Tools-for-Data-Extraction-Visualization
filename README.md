@@ -25,6 +25,7 @@ And automatically generates a Google Slides presentation with the visualization.
 - Python 3.7 or higher
 - Google account with access to Google Slides API
 - **Ollama** (for LLM-based parsing) - See [OLLAMA_SETUP.md](OLLAMA_SETUP.md) for setup
+- **Cursor/VS Code** with **SysIDE Modeler extension** (optional, for diagram visualization) - See [SYSIDE_SETUP.md](SYSIDE_SETUP.md) or [QUICK_INSTALL_SYSIDE.md](QUICK_INSTALL_SYSIDE.md)
 
 ## Setup
 
@@ -65,17 +66,46 @@ Quick summary:
    - Create OAuth client ID (Desktop app type)
    - Download and save as `credentials.json` in project root
 
-### 4. Verify Setup
+### 4. Setup SysIDE Modeler (Optional - for Diagram Visualization)
+
+**📖 For quick installation, see [QUICK_INSTALL_SYSIDE.md](QUICK_INSTALL_SYSIDE.md)**
+
+**📖 For detailed instructions, see [SYSIDE_SETUP.md](SYSIDE_SETUP.md)**
+
+Quick setup:
+1. **Install Extension**: Open Cursor → `Ctrl+Shift+X` → Search "SysIDE Modeler" → Install
+2. **Install Tools**: `Ctrl+Shift+P` → "SysIDE Modeler: Install SysIDE Tools" → Follow prompts
+3. **Reload Window**: `Ctrl+Shift+P` → "Reload Window"
+4. **Verify**: Open `.sysml` file → Check syntax highlighting → Try "SysIDE: Open Diagram" command
+
+**Note:** SysIDE is optional. Your slides generator works independently. SysIDE provides interactive diagram visualization in Cursor.
+
+### 5. Verify Setup
 
 Make sure you have:
 - Virtual environment activated
 - Ollama installed and running (or use `--no-llm` flag)
 - `credentials.json` in the project root (for Google Slides API)
 - All Python dependencies installed
+- (Optional) SysIDE Modeler extension installed for diagram visualization
 
 ## Usage
 
-### Basic Usage
+### Two Ways to Visualize SysML
+
+**Option 1: Interactive Diagrams (SysIDE Modeler)**
+- Open `.sysml` file in Cursor
+- Use Command Palette: `SysIDE: Open Diagram`
+- Interactive editing and visualization
+
+**Option 2: Automated Slides (This Tool)**
+- Generate Google Slides or PowerPoint presentations
+- Command-line automation
+- LLM-powered extraction
+
+Both work with the same `.sysml` files!
+
+### Basic Usage (Slides Generation)
 
 **Important:** Make sure to activate the virtual environment first:
 ```bash
@@ -121,9 +151,13 @@ sysml-to-slides/
 ├── llm_parser.py        # LLM-based SysML parser (primary)
 ├── sysml_parser.py      # Regex-based parser (fallback)
 ├── slides_generator.py  # Google Slides generation logic
+├── pptx_generator.py   # PowerPoint generation logic
 ├── requirements.txt     # Python dependencies
 ├── README.md           # This file
 ├── OLLAMA_SETUP.md     # Ollama setup guide
+├── SYSIDE_SETUP.md     # SysIDE Modeler detailed setup guide
+├── QUICK_INSTALL_SYSIDE.md  # Quick SysIDE installation
+├── install_syside.sh   # SysIDE installation script
 ├── OpsCon.sysml        # Example SysML file
 └── credentials.json    # Google OAuth credentials (you need to add this)
 ```
