@@ -1,0 +1,96 @@
+================================================================================
+                    COMPLETE FEEDBACK FLOW SUMMARY
+================================================================================
+
+YOUR CURRENT PRESENTATION:
+  URL: https://docs.google.com/presentation/d/1yYKlGkhe1jTF64DAAdtRWFVSQ5Yqx-T2LsBb-jm6zgE
+  ID:  1yYKlGkhe1jTF64DAAdtRWFVSQ5Yqx-T2LsBb-jm6zgE
+
+================================================================================
+                          COMPLETE WORKFLOW
+================================================================================
+
+┌─────────────────────────────────────────────────────────────────────────┐
+│ STEP 1: VIEW & EDIT IN GOOGLE SLIDES                                   │
+└─────────────────────────────────────────────────────────────────────────┘
+  1. Open the presentation URL above
+  2. Click on any element (shape) to edit
+  3. Change text (e.g., "Human" → "Human Operator")
+  4. Save (auto-saves automatically)
+
+┌─────────────────────────────────────────────────────────────────────────┐
+│ STEP 2: EXTRACT FEEDBACK                                                │
+└─────────────────────────────────────────────────────────────────────────┘
+  Command:
+    ./venv/bin/python3 feedback_service.py \
+      1yYKlGkhe1jTF64DAAdtRWFVSQ5Yqx-T2LsBb-jm6zgE \
+      --output feedback.json \
+      --mapping element_mapping.json
+
+  Output: feedback.json (contains all changes)
+
+┌─────────────────────────────────────────────────────────────────────────┐
+│ STEP 3: UPDATE JSON MODEL                                               │
+└─────────────────────────────────────────────────────────────────────────┘
+  Command:
+    ./venv/bin/python3 update_model_from_feedback.py \
+      OpsCon.json \
+      feedback.json
+
+  Output: OpsCon_updated.json (updated model)
+
+┌─────────────────────────────────────────────────────────────────────────┐
+│ STEP 4: REGENERATE SLIDES (Optional)                                    │
+└─────────────────────────────────────────────────────────────────────────┘
+  Command:
+    ./venv/bin/python3 visualize_sysml.py \
+      OpsCon_updated.json \
+      --title "Updated Model" \
+      --presentation-id 1yYKlGkhe1jTF64DAAdtRWFVSQ5Yqx-T2LsBb-jm6zgE
+
+================================================================================
+                          MONITORING MODE
+================================================================================
+
+For real-time monitoring (checks every 10 seconds):
+
+  ./venv/bin/python3 feedback_service.py \
+    1yYKlGkhe1jTF64DAAdtRWFVSQ5Yqx-T2LsBb-jm6zgE \
+    --monitor \
+    --interval 10 \
+    --output feedback.json \
+    --mapping element_mapping.json
+
+  Press Ctrl+C to stop
+
+================================================================================
+                          FILES CREATED
+================================================================================
+
+✓ FEEDBACK_USER_GUIDE.md          - Complete detailed guide
+✓ QUICK_FEEDBACK_GUIDE.md         - Quick reference
+✓ update_model_from_feedback.py   - Script to update JSON from feedback
+✓ feedback_service.py             - Feedback extraction service
+✓ element_mapping.json            - Element ID mappings (already exists)
+
+================================================================================
+                          QUICK COMMANDS
+================================================================================
+
+# Extract feedback
+./venv/bin/python3 feedback_service.py \
+  1yYKlGkhe1jTF64DAAdtRWFVSQ5Yqx-T2LsBb-jm6zgE \
+  --output feedback.json \
+  --mapping element_mapping.json
+
+# View feedback
+cat feedback.json | python3 -m json.tool
+
+# Update model
+./venv/bin/python3 update_model_from_feedback.py \
+  OpsCon.json feedback.json
+
+# Count changes
+cat feedback.json | grep -c "has_text_changes.*true"
+
+================================================================================

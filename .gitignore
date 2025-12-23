@@ -6,6 +6,8 @@ env/
 # Google API credentials and tokens
 credentials.json
 token.json
+client_secret*.json
+*.apps.googleusercontent.com.json
 
 # Python cache
 __pycache__/
@@ -26,4 +28,7 @@ Thumbs.db
 
 # Generated files
 *.pptx
+
+# Lock files
+.~lock.*
 

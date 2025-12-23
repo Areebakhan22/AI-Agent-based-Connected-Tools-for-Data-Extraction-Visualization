@@ -1,0 +1,18 @@
+{
+  "uc_p_InspectAircraftAutomatically": "InspectAircraftAutomatically",
+  "comp_p_OpsCon_UAV_basedAircraftInspection": "OpsCon_UAV_basedAircraftInspection",
+  "comp_p_Human": "Human",
+  "comp_p_Environment": "Environment",
+  "comp_p_Drone": "Drone",
+  "comp_p_Aircraft": "Aircraft",
+  "actor_p_DroneOperator": "DroneOperator",
+  "actor_p_CandidateAircraft": "CandidateAircraft",
+  "actor_p_InspectionEnvironment": "InspectionEnvironment",
+  "actor_slide_1_DroneOperator": "DroneOperator",
+  "comp_slide_1_Human": "Human",
+  "actor_slide_2_InspectionEnvironment": "InspectionEnvironment",
+  "comp_slide_2_Environment": "Environment",
+  "subject_slide_3_SoI": "SoI",
+  "actor_slide_4_CandidateAircraft": "CandidateAircraft",
+  "comp_slide_4_Aircraft": "Aircraft"
+}

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SysML Visualization - OpsCon_UAV_basedAircraftInspection</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        svg {
+            border: 1px solid #ddd;
+            background: white;
+            display: block;
+        }
+        .system-boundary {
+            fill: #f5f5f5;
+            stroke: #666;
+            stroke-width: 2;
+        }
+        .system-title {
+            font-size: 16px;
+            font-weight: bold;
+            fill: #000;
+        }
+        .part-rect {
+            fill: white;
+            stroke: #000;
+            stroke-width: 1.5;
+        }
+        .part-text {
+            font-size: 11px;
+            fill: #000;
+            text-anchor: middle;
+            dominant-baseline: middle;
+        }
+        .use-case-rect {
+            fill: #e6f0ff;
+            stroke: #000;
+            stroke-width: 1.5;
+            rx: 10;
+        }
+        .use-case-text {
+            font-size: 11px;
+            fill: #000;
+            text-anchor: middle;
+            dominant-baseline: middle;
+        }
+        .actor-circle {
+            fill: #fff9c4;
+            stroke: #000;
+            stroke-width: 1.5;
+        }
+        .actor-text {
+            font-size: 10px;
+            fill: #000;
+            text-anchor: middle;
+            dominant-baseline: middle;
+        }
+        .connection-line {
+            stroke: #000;
+            stroke-width: 1.5;
+            fill: none;
+            marker-end: url(#arrowhead);
+        }
+        .info {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f9f9f9;
+            border-radius: 5px;
+            font-size: 12px;
+        }
+        .info h3 {
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>SysML Visualization: OpsCon_UAV_basedAircraftInspection</h1>
+        <svg width="720" height="540" xmlns="http://www.w3.org/2000/svg">
+            <!-- Arrow marker for connections -->
+            <defs>
+                <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                    <polygon points="0 0, 10 3, 0 6" fill="#000" />
+                </marker>
+            </defs>
+            
+            <!-- System Boundary -->
+            <rect class="system-boundary" 
+                  x="57.6" 
+                  y="97.6" 
+                  width="604.8" 
+                  height="384.8" />
+            <text class="system-title" 
+                  x="67.6" 
+                  y="122.6">OpsCon_UAV_basedAircraftInspection</text>
+
+            <!-- Part: Human -->
+            <rect class="part-rect" 
+                  x="139.46" 
+                  y="418.18" 
+                  width="91.51999999999998" 
+                  height="55" />
+            <text class="part-text" 
+                  x="185.22" 
+                  y="445.68">Human</text>
+
+            <!-- Part: Environment -->
+            <rect class="part-rect" 
+                  x="255.98" 
+                  y="418.18" 
+                  width="91.51999999999998" 
+                  height="55" />
+            <text class="part-text" 
+                  x="301.74" 
+                  y="445.68">Environment</text>
+
+            <!-- Part: Drone -->
+            <rect class="part-rect" 
+                  x="372.5" 
+                  y="418.18" 
+                  width="91.51999999999998" 
+                  height="55" />
+            <text class="part-text" 
+                  x="418.26" 
+                  y="445.68">Drone</text>
+
+            <!-- Part: Aircraft -->
+            <rect class="part-rect" 
+                  x="489.02" 
+                  y="418.18" 
+                  width="91.51999999999998" 
+                  height="55" />
+            <text class="part-text" 
+                  x="534.78" 
+                  y="445.68">Aircraft</text>
+
+            <!-- Part: DroneOperator -->
+            <rect class="part-rect" 
+                  x="310.0" 
+                  y="493.18" 
+                  width="100" 
+                  height="50" />
+            <text class="part-text" 
+                  x="360.0" 
+                  y="518.1800000000001">DroneOperator</text>
+
+            <!-- Part: InspectionEnvironment -->
+            <rect class="part-rect" 
+                  x="310.0" 
+                  y="563.1800000000001" 
+                  width="100" 
+                  height="50" />
+            <text class="part-text" 
+                  x="360.0" 
+                  y="588.1800000000001">InspectionEnvironment</text>
+
+            <!-- Part: SoI -->
+            <rect class="part-rect" 
+                  x="310.0" 
+                  y="633.1800000000001" 
+                  width="100" 
+                  height="50" />
+            <text class="part-text" 
+                  x="360.0" 
+                  y="658.1800000000001">SoI</text>
+
+            <!-- Part: CandidateAircraft -->
+            <rect class="part-rect" 
+                  x="310.0" 
+                  y="703.1800000000001" 
+                  width="100" 
+                  height="50" />
+            <text class="part-text" 
+                  x="360.0" 
+                  y="728.1800000000001">CandidateAircraft</text>
+
+            <!-- Connection: Human -> DroneOperator -->
+            <line class="connection-line" 
+                  x1="230.98" 
+                  y1="445.68" 
+                  x2="310.0" 
+                  y2="518.1800000000001" />
+
+            <!-- Connection: Environment -> InspectionEnvironment -->
+            <line class="connection-line" 
+                  x1="301.74" 
+                  y1="473.18" 
+                  x2="360.0" 
+                  y2="563.1800000000001" />
+
+            <!-- Connection: Drone -> SoI -->
+            <line class="connection-line" 
+                  x1="418.26" 
+                  y1="473.18" 
+                  x2="360.0" 
+                  y2="633.1800000000001" />
+
+            <!-- Connection: Aircraft -> CandidateAircraft -->
+            <line class="connection-line" 
+                  x1="534.78" 
+                  y1="473.18" 
+                  x2="360.0" 
+                  y2="703.1800000000001" />
+
+        </svg>
+        <div class="info">
+            <h3>Elements Extracted:</h3>
+            <p><strong>Parts:</strong> OpsCon_UAV_basedAircraftInspection, Human, Environment, Drone, Aircraft</p><p><strong>Connections:</strong> Human → DroneOperator, Environment → InspectionEnvironment, Drone → SoI, Aircraft → CandidateAircraft</p>
+        </div>
+    </div>
+</body>
+</html>

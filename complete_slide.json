@@ -1,0 +1,260 @@
+{
+  "slide_index": 0,
+  "slide_id": "complete_approach_1",
+  "slide_title": "Approach 1 - Complete OpsCon UAV-based Aircraft Inspection",
+  "elements": [
+    {
+      "element_id": "sys_container",
+      "shape_id": "sys_container",
+      "shape_type": "RECTANGLE",
+      "text_content": "OpsCon_UAV_basedAircraftInspection",
+      "has_text_changes": false,
+      "element_type": "SYSTEM"
+    },
+    {
+      "element_id": "InspectAircraftAutomatically",
+      "shape_id": "uc_InspectAircraftAutomatically",
+      "shape_type": "ELLIPSE",
+      "text_content": "InspectAircraftAutomatically",
+      "has_text_changes": false,
+      "element_type": "USE_CASE"
+    },
+    {
+      "element_id": "Human",
+      "shape_id": "comp_Human",
+      "shape_type": "RECTANGLE",
+      "text_content": "Human",
+      "has_text_changes": false,
+      "element_type": "PART"
+    },
+    {
+      "element_id": "Environment",
+      "shape_id": "comp_Environment",
+      "shape_type": "RECTANGLE",
+      "text_content": "Environment",
+      "has_text_changes": false,
+      "element_type": "PART"
+    },
+    {
+      "element_id": "Drone",
+      "shape_id": "comp_Drone",
+      "shape_type": "RECTANGLE",
+      "text_content": "Drone",
+      "has_text_changes": false,
+      "element_type": "PART"
+    },
+    {
+      "element_id": "Aircraft",
+      "shape_id": "comp_Aircraft",
+      "shape_type": "RECTANGLE",
+      "text_content": "Aircraft",
+      "has_text_changes": false,
+      "element_type": "PART"
+    },
+    {
+      "element_id": "DroneOperator",
+      "shape_id": "actor_DroneOperator",
+      "shape_type": "CIRCLE",
+      "text_content": "DroneOperator",
+      "has_text_changes": false,
+      "element_type": "ACTOR"
+    },
+    {
+      "element_id": "CandidateAircraft",
+      "shape_id": "actor_CandidateAircraft",
+      "shape_type": "CIRCLE",
+      "text_content": "CandidateAircraft",
+      "has_text_changes": false,
+      "element_type": "ACTOR"
+    },
+    {
+      "element_id": "InspectionEnvironment",
+      "shape_id": "actor_InspectionEnvironment",
+      "shape_type": "CIRCLE",
+      "text_content": "InspectionEnvironment",
+      "has_text_changes": false,
+      "element_type": "ACTOR"
+    },
+    {
+      "element_id": "SoI",
+      "shape_id": "subject_SoI",
+      "shape_type": "ROUND_RECTANGLE",
+      "text_content": "SoI",
+      "has_text_changes": false,
+      "element_type": "SUBJECT"
+    },
+    {
+      "element_id": "conn_Human_DroneOperator",
+      "shape_id": "conn_Human_DroneOperator",
+      "shape_type": "LINE",
+      "text_content": "",
+      "has_text_changes": false,
+      "from": "comp_Human",
+      "to": "actor_DroneOperator",
+      "connection_type": "ASSOCIATION"
+    },
+    {
+      "element_id": "conn_Human_DroneOperator_arrow",
+      "shape_id": "conn_Human_DroneOperator_arrow",
+      "shape_type": "TRIANGLE",
+      "text_content": "",
+      "has_text_changes": false,
+      "connection_target": "actor_DroneOperator"
+    },
+    {
+      "element_id": "conn_Environment_InspectionEnvironment",
+      "shape_id": "conn_Environment_InspectionEnvironment",
+      "shape_type": "LINE",
+      "text_content": "",
+      "has_text_changes": false,
+      "from": "comp_Environment",
+      "to": "actor_InspectionEnvironment",
+      "connection_type": "ASSOCIATION"
+    },
+    {
+      "element_id": "conn_Environment_InspectionEnvironment_arrow",
+      "shape_id": "conn_Environment_InspectionEnvironment_arrow",
+      "shape_type": "TRIANGLE",
+      "text_content": "",
+      "has_text_changes": false,
+      "connection_target": "actor_InspectionEnvironment"
+    },
+    {
+      "element_id": "conn_Drone_SoI",
+      "shape_id": "conn_Drone_SoI",
+      "shape_type": "LINE",
+      "text_content": "",
+      "has_text_changes": false,
+      "from": "comp_Drone",
+      "to": "subject_SoI",
+      "connection_type": "ASSOCIATION"
+    },
+    {
+      "element_id": "conn_Drone_SoI_arrow",
+      "shape_id": "conn_Drone_SoI_arrow",
+      "shape_type": "TRIANGLE",
+      "text_content": "",
+      "has_text_changes": false,
+      "connection_target": "subject_SoI"
+    },
+    {
+      "element_id": "conn_Aircraft_CandidateAircraft",
+      "shape_id": "conn_Aircraft_CandidateAircraft",
+      "shape_type": "LINE",
+      "text_content": "",
+      "has_text_changes": false,
+      "from": "comp_Aircraft",
+      "to": "actor_CandidateAircraft",
+      "connection_type": "ASSOCIATION"
+    },
+    {
+      "element_id": "conn_Aircraft_CandidateAircraft_arrow",
+      "shape_id": "conn_Aircraft_CandidateAircraft_arrow",
+      "shape_type": "TRIANGLE",
+      "text_content": "",
+      "has_text_changes": false,
+      "connection_target": "actor_CandidateAircraft"
+    },
+    {
+      "element_id": "conn_DroneOperator_UseCase",
+      "shape_id": "conn_DroneOperator_UseCase",
+      "shape_type": "LINE",
+      "text_content": "",
+      "has_text_changes": false,
+      "from": "actor_DroneOperator",
+      "to": "uc_InspectAircraftAutomatically",
+      "connection_type": "PARTICIPATES"
+    },
+    {
+      "element_id": "conn_DroneOperator_UseCase_arrow",
+      "shape_id": "conn_DroneOperator_UseCase_arrow",
+      "shape_type": "TRIANGLE",
+      "text_content": "",
+      "has_text_changes": false,
+      "connection_target": "uc_InspectAircraftAutomatically"
+    },
+    {
+      "element_id": "conn_CandidateAircraft_UseCase",
+      "shape_id": "conn_CandidateAircraft_UseCase",
+      "shape_type": "LINE",
+      "text_content": "",
+      "has_text_changes": false,
+      "from": "actor_CandidateAircraft",
+      "to": "uc_InspectAircraftAutomatically",
+      "connection_type": "PARTICIPATES"
+    },
+    {
+      "element_id": "conn_CandidateAircraft_UseCase_arrow",
+      "shape_id": "conn_CandidateAircraft_UseCase_arrow",
+      "shape_type": "TRIANGLE",
+      "text_content": "",
+      "has_text_changes": false,
+      "connection_target": "uc_InspectAircraftAutomatically"
+    },
+    {
+      "element_id": "conn_InspectionEnvironment_UseCase",
+      "shape_id": "conn_InspectionEnvironment_UseCase",
+      "shape_type": "LINE",
+      "text_content": "",
+      "has_text_changes": false,
+      "from": "actor_InspectionEnvironment",
+      "to": "uc_InspectAircraftAutomatically",
+      "connection_type": "PARTICIPATES"
+    },
+    {
+      "element_id": "conn_InspectionEnvironment_UseCase_arrow",
+      "shape_id": "conn_InspectionEnvironment_UseCase_arrow",
+      "shape_type": "TRIANGLE",
+      "text_content": "",
+      "has_text_changes": false,
+      "connection_target": "uc_InspectAircraftAutomatically"
+    },
+    {
+      "element_id": "conn_SoI_UseCase",
+      "shape_id": "conn_SoI_UseCase",
+      "shape_type": "LINE",
+      "text_content": "",
+      "has_text_changes": false,
+      "from": "subject_SoI",
+      "to": "uc_InspectAircraftAutomatically",
+      "connection_type": "SUBJECT_OF",
+      "line_style": "DASHED"
+    },
+    {
+      "element_id": "conn_SoI_UseCase_arrow",
+      "shape_id": "conn_SoI_UseCase_arrow",
+      "shape_type": "TRIANGLE",
+      "text_content": "",
+      "has_text_changes": false,
+      "connection_target": "uc_InspectAircraftAutomatically"
+    }
+  ],
+  "shape_legend": {
+    "SYSTEM": "RECTANGLE - Large container box",
+    "PART": "RECTANGLE - System components",
+    "ACTOR": "CIRCLE - External actors",
+    "USE_CASE": "ELLIPSE - Use case functionality",
+    "SUBJECT": "ROUND_RECTANGLE - Subject of interest"
+  },
+  "connections_summary": {
+    "part_to_actor": [
+      "Human → DroneOperator",
+      "Environment → InspectionEnvironment",
+      "Aircraft → CandidateAircraft"
+    ],
+    "part_to_subject": [
+      "Drone → SoI"
+    ],
+    "actor_to_use_case": [
+      "DroneOperator → InspectAircraftAutomatically",
+      "CandidateAircraft → InspectAircraftAutomatically",
+      "InspectionEnvironment → InspectAircraftAutomatically"
+    ],
+    "subject_to_use_case": [
+      "SoI → InspectAircraftAutomatically (dashed line)"
+    ]
+  }
+}
+
+
+

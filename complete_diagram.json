@@ -1,0 +1,206 @@
+{
+  "diagram_title": "Approach 1 - Complete OpsCon UAV-based Aircraft Inspection",
+  "description": "Complete SysML diagram with all parts, actors, use cases, and connections",
+  "elements": [
+    {
+      "id": "system_container",
+      "type": "SYSTEM",
+      "shape_type": "RECTANGLE",
+      "text": "OpsCon_UAV_basedAircraftInspection",
+      "x": 400,
+      "y": 300,
+      "width": 800,
+      "height": 600,
+      "border_color": "#1a73e8",
+      "fill_color": "#f8f9fa"
+    },
+    {
+      "id": "use_case_inspect",
+      "type": "USE_CASE",
+      "shape_type": "ELLIPSE",
+      "text": "InspectAircraftAutomatically",
+      "x": 600,
+      "y": 200,
+      "width": 280,
+      "height": 100,
+      "border_color": "#1a73e8",
+      "fill_color": "#ffffff"
+    },
+    {
+      "id": "part_human",
+      "type": "PART",
+      "shape_type": "RECTANGLE",
+      "text": "Human",
+      "x": 200,
+      "y": 400,
+      "width": 120,
+      "height": 60,
+      "border_color": "#1a73e8",
+      "fill_color": "#e8f0fe"
+    },
+    {
+      "id": "part_environment",
+      "type": "PART",
+      "shape_type": "RECTANGLE",
+      "text": "Environment",
+      "x": 350,
+      "y": 500,
+      "width": 120,
+      "height": 60,
+      "border_color": "#1a73e8",
+      "fill_color": "#e8f0fe"
+    },
+    {
+      "id": "part_drone",
+      "type": "PART",
+      "shape_type": "RECTANGLE",
+      "text": "Drone",
+      "x": 500,
+      "y": 500,
+      "width": 120,
+      "height": 60,
+      "border_color": "#1a73e8",
+      "fill_color": "#e8f0fe"
+    },
+    {
+      "id": "part_aircraft",
+      "type": "PART",
+      "shape_type": "RECTANGLE",
+      "text": "Aircraft",
+      "x": 650,
+      "y": 500,
+      "width": 120,
+      "height": 60,
+      "border_color": "#1a73e8",
+      "fill_color": "#e8f0fe"
+    },
+    {
+      "id": "actor_drone_operator",
+      "type": "ACTOR",
+      "shape_type": "CIRCLE",
+      "text": "DroneOperator",
+      "x": 200,
+      "y": 200,
+      "width": 100,
+      "height": 100,
+      "border_color": "#1a73e8",
+      "fill_color": "#fff9c4"
+    },
+    {
+      "id": "actor_candidate_aircraft",
+      "type": "ACTOR",
+      "shape_type": "CIRCLE",
+      "text": "CandidateAircraft",
+      "x": 850,
+      "y": 200,
+      "width": 100,
+      "height": 100,
+      "border_color": "#1a73e8",
+      "fill_color": "#fff9c4"
+    },
+    {
+      "id": "actor_inspection_environment",
+      "type": "ACTOR",
+      "shape_type": "CIRCLE",
+      "text": "InspectionEnvironment",
+      "x": 350,
+      "y": 100,
+      "width": 120,
+      "height": 120,
+      "border_color": "#1a73e8",
+      "fill_color": "#fff9c4"
+    },
+    {
+      "id": "soi",
+      "type": "SUBJECT",
+      "shape_type": "ROUND_RECTANGLE",
+      "text": "SoI",
+      "x": 500,
+      "y": 350,
+      "width": 100,
+      "height": 50,
+      "border_color": "#1a73e8",
+      "fill_color": "#c8e6c9"
+    }
+  ],
+  "connections": [
+    {
+      "id": "conn_human_to_drone_operator",
+      "from": "part_human",
+      "to": "actor_drone_operator",
+      "type": "ASSOCIATION",
+      "style": "solid",
+      "arrow": "arrow"
+    },
+    {
+      "id": "conn_environment_to_inspection_env",
+      "from": "part_environment",
+      "to": "actor_inspection_environment",
+      "type": "ASSOCIATION",
+      "style": "solid",
+      "arrow": "arrow"
+    },
+    {
+      "id": "conn_drone_to_soi",
+      "from": "part_drone",
+      "to": "soi",
+      "type": "ASSOCIATION",
+      "style": "solid",
+      "arrow": "arrow"
+    },
+    {
+      "id": "conn_aircraft_to_candidate",
+      "from": "part_aircraft",
+      "to": "actor_candidate_aircraft",
+      "type": "ASSOCIATION",
+      "style": "solid",
+      "arrow": "arrow"
+    },
+    {
+      "id": "conn_drone_operator_to_use_case",
+      "from": "actor_drone_operator",
+      "to": "use_case_inspect",
+      "type": "PARTICIPATES",
+      "style": "solid",
+      "arrow": "arrow"
+    },
+    {
+      "id": "conn_candidate_to_use_case",
+      "from": "actor_candidate_aircraft",
+      "to": "use_case_inspect",
+      "type": "PARTICIPATES",
+      "style": "solid",
+      "arrow": "arrow"
+    },
+    {
+      "id": "conn_inspection_env_to_use_case",
+      "from": "actor_inspection_environment",
+      "to": "use_case_inspect",
+      "type": "PARTICIPATES",
+      "style": "solid",
+      "arrow": "arrow"
+    },
+    {
+      "id": "conn_soi_to_use_case",
+      "from": "soi",
+      "to": "use_case_inspect",
+      "type": "SUBJECT_OF",
+      "style": "dashed",
+      "arrow": "arrow"
+    }
+  ],
+  "element_type_shapes": {
+    "SYSTEM": "RECTANGLE",
+    "PART": "RECTANGLE",
+    "ACTOR": "CIRCLE",
+    "USE_CASE": "ELLIPSE",
+    "SUBJECT": "ROUND_RECTANGLE"
+  },
+  "notes": {
+    "shape_differentiation": "Different shapes used for different element types: Parts=Rectangles, Actors=Circles, Use Case=Ellipse, Subject=Round Rectangle",
+    "connections": "All connections maintain context: Parts connect to their corresponding Actors, Actors participate in Use Case, Subject is part of Use Case"
+  }
+}
+
+
+

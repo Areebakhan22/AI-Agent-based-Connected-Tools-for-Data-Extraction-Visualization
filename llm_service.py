@@ -172,9 +172,19 @@ Rules:
 5. Extract ALL use cases (declared with "use case" keyword)
 6. Extract objectives from use cases (from "objective" blocks with "doc" comments)
 7. Extract ALL "connect X to Y" statements as connections
+   - For Individual Relationship Diagrams: Identify Source Part and Target Actor
+   - Each connection represents: Part (Rectangle) → Actor (Circle/Port on Use Case Oval)
 8. Build hierarchy mapping parent names to arrays of child names
 9. Extract documentation from "doc" comments if present
 10. Return ONLY the JSON object, no additional text
+
+Individual Relationship Diagram Mapping:
+- Use Case → Large Oval (Center position)
+- Part → Rectangle (Peripheral position)
+- Actor → Small Circle (Port) anchored to Use Case Oval's edge
+- Connection: Arrow from closest edge of Part Rectangle to center of Actor Circle
+- All shapes and connections should be medium-sized
+- Must fit within 16:9 aspect ratio
 
 Return the JSON now:"""
         

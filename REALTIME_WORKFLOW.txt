@@ -1,0 +1,97 @@
+================================================================================
+                    REAL-TIME FEEDBACK WORKFLOW
+================================================================================
+
+┌─────────────────────────────────────────────────────────────────────────┐
+│ STEP 1: START MONITORING                                                │
+└─────────────────────────────────────────────────────────────────────────┘
+
+Terminal:
+  ./start_realtime_monitoring.sh
+
+  OR
+
+  ./venv/bin/python3 feedback_service.py \
+    1IIzjGeIlJXDvoKvst8VPKt32tGZ4OlrJlcrLQmXUxx4 \
+    --monitor --interval 5 \
+    --output feedback_realtime.json \
+    --mapping element_mapping.json
+
+Output:
+  ✓ Baseline established (first check)
+  Waiting 5 seconds until next check...
+
+┌─────────────────────────────────────────────────────────────────────────┐
+│ STEP 2: OPEN PRESENTATION IN BROWSER                                    │
+└─────────────────────────────────────────────────────────────────────────┘
+
+Browser:
+  https://docs.google.com/presentation/d/1IIzjGeIlJXDvoKvst8VPKt32tGZ4OlrJlcrLQmXUxx4
+
+  Keep this window open!
+
+┌─────────────────────────────────────────────────────────────────────────┐
+│ STEP 3: MAKE EDITS IN GOOGLE SLIDES                                    │
+└─────────────────────────────────────────────────────────────────────────┘
+
+In Google Slides:
+  1. Click on any element (e.g., "Human")
+  2. Edit text (e.g., "Human" → "Human Operator")
+  3. Click outside to save (auto-saves)
+
+┌─────────────────────────────────────────────────────────────────────────┐
+│ STEP 4: WATCH TERMINAL FOR DETECTION                                    │
+└─────────────────────────────────────────────────────────────────────────┘
+
+Terminal (within 5 seconds):
+  [23:00:15] Check #2 - Extracting feedback... ✓ CHANGES DETECTED!
+    → 1 change(s) found
+      • Slide 1: 'Human' 'Human' → 'Human Operator'
+
+    Statistics:
+      • Total checks: 2
+      • Changes detected: 1
+      • Elements modified: 1
+      • Monitoring time: 10.2s
+
+┌─────────────────────────────────────────────────────────────────────────┐
+│ STEP 5: CONTINUE OR STOP                                                │
+└─────────────────────────────────────────────────────────────────────────┘
+
+Continue:
+  - Make more edits
+  - Watch for more detections
+  - Feedback saved automatically
+
+Stop:
+  - Press Ctrl+C
+  - See final statistics
+  - Process feedback_realtime.json
+
+┌─────────────────────────────────────────────────────────────────────────┐
+│ STEP 6: PROCESS FEEDBACK (Optional)                                    │
+└─────────────────────────────────────────────────────────────────────────┘
+
+Terminal:
+  ./venv/bin/python3 update_model_from_feedback.py \
+    OpsCon.json \
+    feedback_realtime.json
+
+================================================================================
+                          QUICK COMMANDS
+================================================================================
+
+Start Monitoring:
+  ./start_realtime_monitoring.sh
+
+View Feedback:
+  cat feedback_realtime.json | python3 -m json.tool
+
+Count Changes:
+  cat feedback_realtime.json | grep -c "has_text_changes.*true"
+
+Update Model:
+  ./venv/bin/python3 update_model_from_feedback.py \
+    OpsCon.json feedback_realtime.json
+
+================================================================================

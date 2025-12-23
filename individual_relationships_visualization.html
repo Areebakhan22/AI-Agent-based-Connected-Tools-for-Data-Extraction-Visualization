@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SysML Visualization - Complete & Individual Relationship Diagrams</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        .header h1 {
+            margin: 0 0 10px 0;
+            color: #2c3e50;
+            font-size: 32px;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        .header p {
+            margin: 5px 0;
+            color: #5a6c7d;
+            font-size: 16px;
+        }
+        .slide-section {
+            margin-bottom: 60px;
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .slide-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.2);
+        }
+        .slide-title {
+            text-align: center;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #2c3e50;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .slide-subtitle {
+            text-align: center;
+            font-size: 16px;
+            color: #7f8c8d;
+            margin-bottom: 25px;
+            font-weight: 500;
+        }
+        .slide-container {
+            background: linear-gradient(135deg, #ffffff 0%, #f5f7fa 100%);
+            border: 4px solid #34495e;
+            margin: 0 auto;
+            width: 960px;
+            height: 540px;
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: inset 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .system-boundary {
+            position: absolute;
+            border: 3px solid #2c3e50;
+            background: linear-gradient(135deg, #ecf0f1 0%, #d5dbdb 100%);
+            top: 50px;
+            left: 50px;
+            width: 860px;
+            height: 440px;
+            border-radius: 5px;
+            box-shadow: inset 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .system-title {
+            position: absolute;
+            top: 15px;
+            left: 20px;
+            font-weight: 700;
+            font-size: 16px;
+            color: #2c3e50;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            background: rgba(255,255,255,0.8);
+            padding: 5px 12px;
+            border-radius: 4px;
+        }
+        .use-case-oval {
+            position: absolute;
+            border: 3px solid #1a73e8;
+            background: linear-gradient(135deg, #d9e6ff 0%, #b3d9ff 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 12px;
+            padding: 10px;
+            box-sizing: border-box;
+            font-weight: 600;
+            word-wrap: break-word;
+            box-shadow: 0 4px 12px rgba(26, 115, 232, 0.3);
+            color: #1a237e;
+            line-height: 1.3;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .actor-circle {
+            position: absolute;
+            border: 3px solid #f57c00;
+            background: linear-gradient(135deg, #fff9c4 0%, #ffe082 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 10px;
+            padding: 5px;
+            box-sizing: border-box;
+            font-weight: 600;
+            word-wrap: break-word;
+            box-shadow: 0 4px 12px rgba(245, 124, 0, 0.3);
+            color: #e65100;
+            line-height: 1.2;
+            overflow: hidden;
+        }
+        .part-rectangle {
+            position: absolute;
+            border: 2.5px solid #388e3c;
+            background: linear-gradient(135deg, #ffffff 0%, #f5f5f5 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 12px;
+            padding: 10px;
+            box-sizing: border-box;
+            font-weight: 600;
+            word-wrap: break-word;
+            box-shadow: 0 4px 12px rgba(56, 142, 60, 0.2);
+            color: #1b5e20;
+            line-height: 1.3;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .soi-rectangle {
+            position: absolute;
+            border: 2.5px solid #7b1fa2;
+            background: linear-gradient(135deg, #c7e6c8 0%, #a5d6a7 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 11px;
+            padding: 8px;
+            box-sizing: border-box;
+            font-weight: 700;
+            box-shadow: 0 4px 12px rgba(123, 31, 162, 0.3);
+            color: #4a148c;
+            line-height: 1.2;
+            overflow: hidden;
+        }
+        .connection-line {
+            position: absolute;
+            background-color: #000;
+            z-index: 1;
+            transform-origin: left center;
+        }
+        .arrow-head {
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            z-index: 2;
+        }
+        .legend {
+            text-align: center;
+            margin-top: 50px;
+            padding: 30px;
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            border-radius: 15px;
+            color: #495057;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        .legend h3 {
+            margin-top: 0;
+            color: #2c3e50;
+            font-size: 22px;
+            font-weight: 700;
+        }
+        .legend-item {
+            display: inline-block;
+            margin: 10px 25px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        .legend-shape {
+            display: inline-block;
+            width: 25px;
+            height: 25px;
+            margin-right: 8px;
+            vertical-align: middle;
+            border: 2px solid #000;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        .legend-oval {
+            border-radius: 50%;
+            background: linear-gradient(135deg, #d9e6ff 0%, #b3d9ff 100%);
+        }
+        .legend-circle {
+            border-radius: 50%;
+            background: linear-gradient(135deg, #fff9c4 0%, #ffe082 100%);
+        }
+        .legend-rect {
+            background: linear-gradient(135deg, #ffffff 0%, #f5f5f5 100%);
+            border-radius: 4px;
+        }
+        .legend-soi {
+            border-radius: 8px;
+            background: linear-gradient(135deg, #c7e6c8 0%, #a5d6a7 100%);
+        }
+        
+        /* Complete Diagram Styles */
+        .complete-diagram {
+            position: relative;
+        }
+        .complete-use-case {
+            position: absolute;
+            border: 3px solid #1a73e8;
+            background: linear-gradient(135deg, #d9e6ff 0%, #b3d9ff 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 13px;
+            padding: 12px;
+            box-sizing: border-box;
+            font-weight: 600;
+            word-wrap: break-word;
+            box-shadow: 0 4px 12px rgba(26, 115, 232, 0.3);
+            color: #1a237e;
+            line-height: 1.3;
+            overflow: hidden;
+        }
+        .complete-actor {
+            position: absolute;
+            border: 2.5px solid #f57c00;
+            background: linear-gradient(135deg, #fff9c4 0%, #ffe082 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 10px;
+            padding: 6px;
+            box-sizing: border-box;
+            font-weight: 600;
+            word-wrap: break-word;
+            box-shadow: 0 3px 10px rgba(245, 124, 0, 0.3);
+            color: #e65100;
+            line-height: 1.2;
+            overflow: hidden;
+        }
+        .complete-part {
+            position: absolute;
+            border: 2.5px solid #388e3c;
+            background: linear-gradient(135deg, #ffffff 0%, #f5f5f5 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 12px;
+            padding: 10px;
+            box-sizing: border-box;
+            font-weight: 600;
+            word-wrap: break-word;
+            box-shadow: 0 3px 10px rgba(56, 142, 60, 0.2);
+            color: #1b5e20;
+            line-height: 1.3;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .complete-soi {
+            position: absolute;
+            border: 2.5px solid #7b1fa2;
+            background: linear-gradient(135deg, #c7e6c8 0%, #a5d6a7 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 11px;
+            padding: 8px;
+            box-sizing: border-box;
+            font-weight: 700;
+            box-shadow: 0 3px 10px rgba(123, 31, 162, 0.3);
+            color: #4a148c;
+            line-height: 1.2;
+            overflow: hidden;
+        }
+        
+        /* Text fitting improvements */
+        .text-fit {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-height: 100%;
+        }
+        
+        /* Connection arrow styling */
+        svg {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .arrow-marker {
+            fill: #000;
+        }
+        .connection-arrow {
+            stroke: #000;
+            stroke-width: 2.5;
+            fill: none;
+            marker-end: url(#arrowhead);
+        }
+        .connection-dashed {
+            stroke: #666;
+            stroke-width: 2.5;
+            stroke-dasharray: 6,4;
+            fill: none;
+            marker-end: url(#arrowhead-dashed);
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>SysML Visualization</h1>
+        <p><strong>System:</strong> OpsCon_UAV_basedAircraftInspection</p>
+        <p style="font-size: 14px; margin-top: 10px; color: #7f8c8d;">
+            Complete Diagram | Individual Relationship Diagrams
+        </p>
+    </div>
+
+    <!-- Slide 1: Complete SysML Diagram -->
+    <div class="slide-section">
+        <div class="slide-title">Slide 1: Complete SysML Diagram</div>
+        <div class="slide-subtitle">All Elements and Relationships</div>
+        <div class="slide-container complete-diagram">
+            <div class="system-boundary">
+                <div class="system-title">OpsCon_UAV_basedAircraftInspection</div>
+                
+                <!-- Use Case Oval (Center) -->
+                <div class="complete-use-case" style="left: 340px; top: 180px; width: 280px; height: 90px;">
+                    <div class="text-fit">InspectAircraftAutomatically</div>
+                </div>
+                
+                <!-- Actors (Circles around Use Case) -->
+                <div class="complete-actor" style="left: 200px; top: 140px; width: 70px; height: 70px;">
+                    <div class="text-fit">DroneOperator</div>
+                </div>
+                
+                <div class="complete-actor" style="left: 690px; top: 140px; width: 70px; height: 70px;">
+                    <div class="text-fit">CandidateAircraft</div>
+                </div>
+                
+                <div class="complete-actor" style="left: 320px; top: 90px; width: 75px; height: 75px;">
+                    <div class="text-fit">InspectionEnvironment</div>
+                </div>
+                
+                <!-- SoI (Subject of Interest) -->
+                <div class="complete-soi" style="left: 450px; top: 300px; width: 60px; height: 45px;">
+                    <div class="text-fit">SoI</div>
+                </div>
+                
+                <!-- Parts (Rectangles at bottom) -->
+                <div class="complete-part" style="left: 120px; top: 360px; width: 130px; height: 55px;">
+                    <div class="text-fit">Human</div>
+                </div>
+                
+                <div class="complete-part" style="left: 280px; top: 360px; width: 130px; height: 55px;">
+                    <div class="text-fit">Environment</div>
+                </div>
+                
+                <div class="complete-part" style="left: 440px; top: 360px; width: 130px; height: 55px;">
+                    <div class="text-fit">Drone</div>
+                </div>
+                
+                <div class="complete-part" style="left: 600px; top: 360px; width: 130px; height: 55px;">
+                    <div class="text-fit">Aircraft</div>
+                </div>
+                
+                <!-- All Connections -->
+                <svg>
+                    <defs>
+                        <marker id="arrowhead" markerWidth="12" markerHeight="12" refX="10" refY="3" orient="auto">
+                            <polygon points="0 0, 12 3, 0 6" fill="#000" />
+                        </marker>
+                        <marker id="arrowhead-dashed" markerWidth="12" markerHeight="12" refX="10" refY="3" orient="auto">
+                            <polygon points="0 0, 12 3, 0 6" fill="#666" />
+                        </marker>
+                    </defs>
+                    
+                    <!-- Human → DroneOperator -->
+                    <line x1="185" y1="360" x2="235" y2="175" class="connection-arrow" />
+                    
+                    <!-- Environment → InspectionEnvironment -->
+                    <line x1="345" y1="360" x2="357.5" y2="127.5" class="connection-arrow" />
+                    
+                    <!-- Drone → SoI -->
+                    <line x1="505" y1="360" x2="480" y2="322.5" class="connection-dashed" />
+                    
+                    <!-- Aircraft → CandidateAircraft -->
+                    <line x1="665" y1="360" x2="725" y2="175" class="connection-arrow" />
+                    
+                    <!-- DroneOperator → Use Case -->
+                    <line x1="270" y1="175" x2="340" y2="225" class="connection-arrow" />
+                    
+                    <!-- CandidateAircraft → Use Case -->
+                    <line x1="690" y1="175" x2="620" y2="225" class="connection-arrow" />
+                    
+                    <!-- InspectionEnvironment → Use Case -->
+                    <line x1="357.5" y1="127.5" x2="450" y2="225" class="connection-arrow" />
+                    
+                    <!-- SoI → Use Case -->
+                    <line x1="480" y1="300" x2="480" y2="270" class="connection-dashed" />
+                </svg>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 2: Human → DroneOperator -->
+    <div class="slide-section">
+        <div class="slide-title">Slide 2: Individual Relationship 1</div>
+        <div class="slide-subtitle">Human → DroneOperator</div>
+        <div class="slide-container">
+            <div class="system-boundary">
+                <div class="system-title">OpsCon_UAV_basedAircraftInspection</div>
+                
+                <!-- Use Case Oval (Center-Top) -->
+                <div class="use-case-oval" style="left: 318px; top: 157px; width: 280px; height: 85px;">
+                    <div class="text-fit">InspectAircraftAutomatically</div>
+                </div>
+                
+                <!-- Actor Circle (Port on Use Case Right Edge) -->
+                <div class="actor-circle" style="left: 542px; top: 172px; width: 55px; height: 55px;">
+                    <div class="text-fit">DroneOperator</div>
+                </div>
+                
+                <!-- Part Rectangle (Bottom-Left) -->
+                <div class="part-rectangle" style="left: 110px; top: 290px; width: 140px; height: 60px;">
+                    <div class="text-fit">Human</div>
+                </div>
+                
+                <!-- Connection: Part top-middle → Actor center -->
+                <svg>
+                    <defs>
+                        <marker id="arrowhead1" markerWidth="12" markerHeight="12" refX="10" refY="3" orient="auto">
+                            <polygon points="0 0, 12 3, 0 6" fill="#000" />
+                        </marker>
+                    </defs>
+                    <line x1="180" y1="290" x2="569.5" y2="199.5" class="connection-arrow" marker-end="url(#arrowhead1)" />
+                </svg>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 3: Environment → InspectionEnvironment -->
+    <div class="slide-section">
+        <div class="slide-title">Slide 3: Individual Relationship 2</div>
+        <div class="slide-subtitle">Environment → InspectionEnvironment</div>
+        <div class="slide-container">
+            <div class="system-boundary">
+                <div class="system-title">OpsCon_UAV_basedAircraftInspection</div>
+                
+                <!-- Use Case Oval (Center-Top) -->
+                <div class="use-case-oval" style="left: 318px; top: 157px; width: 280px; height: 85px;">
+                    <div class="text-fit">InspectAircraftAutomatically</div>
+                </div>
+                
+                <!-- Actor Circle (Port on Use Case Right Edge) -->
+                <div class="actor-circle" style="left: 542px; top: 172px; width: 55px; height: 55px;">
+                    <div class="text-fit">InspectionEnvironment</div>
+                </div>
+                
+                <!-- Part Rectangle (Bottom-Left) -->
+                <div class="part-rectangle" style="left: 110px; top: 290px; width: 140px; height: 60px;">
+                    <div class="text-fit">Environment</div>
+                </div>
+                
+                <!-- Connection: Part → Actor -->
+                <svg>
+                    <defs>
+                        <marker id="arrowhead2" markerWidth="12" markerHeight="12" refX="10" refY="3" orient="auto">
+                            <polygon points="0 0, 12 3, 0 6" fill="#000" />
+                        </marker>
+                    </defs>
+                    <line x1="180" y1="290" x2="569.5" y2="199.5" class="connection-arrow" marker-end="url(#arrowhead2)" />
+                </svg>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 4: Drone → SoI -->
+    <div class="slide-section">
+        <div class="slide-title">Slide 4: Individual Relationship 3</div>
+        <div class="slide-subtitle">Drone → SoI (Subject of Interest)</div>
+        <div class="slide-container">
+            <div class="system-boundary">
+                <div class="system-title">OpsCon_UAV_basedAircraftInspection</div>
+                
+                <!-- Use Case Oval (Center-Top) -->
+                <div class="use-case-oval" style="left: 318px; top: 157px; width: 280px; height: 85px;">
+                    <div class="text-fit">InspectAircraftAutomatically</div>
+                </div>
+                
+                <!-- SoI (Subject of Interest) - Round Rectangle on Use Case edge -->
+                <div class="soi-rectangle" style="left: 542px; top: 172px; width: 80px; height: 50px;">
+                    <div class="text-fit">SoI</div>
+                </div>
+                
+                <!-- Part Rectangle (Bottom-Left) -->
+                <div class="part-rectangle" style="left: 110px; top: 290px; width: 140px; height: 60px;">
+                    <div class="text-fit">Drone</div>
+                </div>
+                
+                <!-- Connection: Part → SoI (dashed) -->
+                <svg>
+                    <defs>
+                        <marker id="arrowhead3" markerWidth="12" markerHeight="12" refX="10" refY="3" orient="auto">
+                            <polygon points="0 0, 12 3, 0 6" fill="#666" />
+                        </marker>
+                    </defs>
+                    <line x1="180" y1="290" x2="582" y2="197" class="connection-dashed" marker-end="url(#arrowhead3)" />
+                </svg>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 5: Aircraft → CandidateAircraft -->
+    <div class="slide-section">
+        <div class="slide-title">Slide 5: Individual Relationship 4</div>
+        <div class="slide-subtitle">Aircraft → CandidateAircraft</div>
+        <div class="slide-container">
+            <div class="system-boundary">
+                <div class="system-title">OpsCon_UAV_basedAircraftInspection</div>
+                
+                <!-- Use Case Oval (Center-Top) -->
+                <div class="use-case-oval" style="left: 318px; top: 157px; width: 280px; height: 85px;">
+                    <div class="text-fit">InspectAircraftAutomatically</div>
+                </div>
+                
+                <!-- Actor Circle (Port on Use Case Right Edge) -->
+                <div class="actor-circle" style="left: 542px; top: 172px; width: 55px; height: 55px;">
+                    <div class="text-fit">CandidateAircraft</div>
+                </div>
+                
+                <!-- Part Rectangle (Bottom-Left) -->
+                <div class="part-rectangle" style="left: 110px; top: 290px; width: 140px; height: 60px;">
+                    <div class="text-fit">Aircraft</div>
+                </div>
+                
+                <!-- Connection: Part → Actor -->
+                <svg>
+                    <defs>
+                        <marker id="arrowhead4" markerWidth="12" markerHeight="12" refX="10" refY="3" orient="auto">
+                            <polygon points="0 0, 12 3, 0 6" fill="#000" />
+                        </marker>
+                    </defs>
+                    <line x1="180" y1="290" x2="569.5" y2="199.5" class="connection-arrow" marker-end="url(#arrowhead4)" />
+                </svg>
+            </div>
+        </div>
+    </div>
+
+    <div class="legend">
+        <h3>Legend</h3>
+        <div class="legend-item">
+            <span class="legend-shape legend-oval"></span>
+            <span>Use Case (Oval)</span>
+        </div>
+        <div class="legend-item">
+            <span class="legend-shape legend-circle"></span>
+            <span>Actor (Circle/Port)</span>
+        </div>
+        <div class="legend-item">
+            <span class="legend-shape legend-rect"></span>
+            <span>Part (Rectangle)</span>
+        </div>
+        <div class="legend-item">
+            <span class="legend-shape legend-soi"></span>
+            <span>Subject of Interest (SoI)</span>
+        </div>
+        <div style="margin-top: 25px; padding-top: 20px; border-top: 2px solid #dee2e6;">
+            <p style="font-size: 13px; color: #6c757d; margin: 5px 0;">
+                <strong>Layout:</strong> Use Case (Oval, center-top) | Actor (Circle, port on oval right edge) | Part (Rectangle, bottom-left)
+            </p>
+            <p style="font-size: 13px; color: #6c757d; margin: 5px 0;">
+                <strong>Connection:</strong> Arrow from Part top-middle edge to Actor center (connectionSiteIndex 0 → 0)
+            </p>
+            <p style="font-size: 13px; color: #6c757d; margin: 5px 0;">
+                <strong>Dashed Line:</strong> Used for Subject of Interest (SoI) connections
+            </p>
+        </div>
+    </div>
+
+</body>
+</html>

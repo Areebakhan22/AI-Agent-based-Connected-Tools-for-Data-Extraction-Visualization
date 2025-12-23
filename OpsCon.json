@@ -1,0 +1,88 @@
+{
+  "parts": [
+    {
+      "name": "OpsCon_UAV_basedAircraftInspection",
+      "doc": "",
+      "parent": null,
+      "is_top_level": true
+    },
+    {
+      "name": "Human",
+      "doc": "",
+      "parent": "OpsCon_UAV_basedAircraftInspection",
+      "is_top_level": false
+    },
+    {
+      "name": "Environment",
+      "doc": "",
+      "parent": "OpsCon_UAV_basedAircraftInspection",
+      "is_top_level": false
+    },
+    {
+      "name": "Drone",
+      "doc": "",
+      "parent": "OpsCon_UAV_basedAircraftInspection",
+      "is_top_level": false
+    },
+    {
+      "name": "Aircraft",
+      "doc": "",
+      "parent": "OpsCon_UAV_basedAircraftInspection",
+      "is_top_level": false
+    }
+  ],
+  "actors": [
+    {
+      "name": "DroneOperator",
+      "doc": ""
+    },
+    {
+      "name": "CandidateAircraft",
+      "doc": ""
+    },
+    {
+      "name": "InspectionEnvironment",
+      "doc": ""
+    }
+  ],
+  "use_cases": [
+    {
+      "name": "InspectAircraftAutomatically",
+      "doc": "",
+      "objectives": [
+        "FlyAutomatically",
+        "AquireAircraftExternalVisuuaImages",
+        "Safe_UAV_Flight"
+      ]
+    }
+  ],
+  "hierarchy": {
+    "OpsCon_UAV_basedAircraftInspection": [
+      "Human",
+      "Environment",
+      "Drone",
+      "Aircraft"
+    ]
+  },
+  "connections": [
+    {
+      "from": "Human",
+      "to": "DroneOperator"
+    },
+    {
+      "from": "Environment",
+      "to": "InspectionEnvironment"
+    },
+    {
+      "from": "Drone",
+      "to": "SoI"
+    },
+    {
+      "from": "Aircraft",
+      "to": "CandidateAircraft"
+    }
+  ]
+}
+
+
+

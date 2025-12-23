@@ -986,31 +986,44 @@ def draw_connection(service, presentation_id, page_id,
         line_thickness = 2
         conn_width = line_thickness
         conn_height = max(line_height, 1)
-        
-        requests = [{
-            'createShape': {
-                'objectId': connector_id,
-                'shapeType': 'RECTANGLE',
-                'elementProperties': {
-                    'pageObjectId': page_id,
-                    'size': {
-                        'height': {'magnitude': conn_height, 'unit': 'PT'},
-                        'width': {'magnitude': conn_width, 'unit': 'PT'}
-                    },
-                    'transform': {
-                        'scaleX': 1,
-                        'scaleY': 1,
-                        'translateX': line_x,
-                        'translateY': line_y,
-                        'unit': 'PT'
-                    }
+    
+    # Initialize requests list for the connector shape (for both horizontal and vertical)
+    requests = [{
+        'createShape': {
+            'objectId': connector_id,
+            'shapeType': 'RECTANGLE',
+            'elementProperties': {
+                'pageObjectId': page_id,
+                'size': {
+                    'height': {'magnitude': conn_height, 'unit': 'PT'},
+                    'width': {'magnitude': conn_width, 'unit': 'PT'}
+                },
+                'transform': {
+                    'scaleX': 1,
+                    'scaleY': 1,
+                    'translateX': line_x,
+                    'translateY': line_y,
+                    'unit': 'PT'
                 }
             }
-        }, {
-            'updateShapeProperties': {
-                'objectId': connector_id,
-                'shapeProperties': {
-                    'shapeBackgroundFill': {
+        }
+    }, {
+        'updateShapeProperties': {
+            'objectId': connector_id,
+            'shapeProperties': {
+                'shapeBackgroundFill': {
+                    'solidFill': {
+                        'color': {
+                            'rgbColor': {
+                                'red': 0.0,
+                                'green': 0.0,
+                                'blue': 0.0
+                            }
+                        }
+                    }
+                },
+                'outline': {
+                    'outlineFill': {
                         'solidFill': {
                             'color': {
                                 'rgbColor': {
@@ -1021,24 +1034,12 @@ def draw_connection(service, presentation_id, page_id,
                             }
                         }
                     },
-                    'outline': {
-                        'outlineFill': {
-                            'solidFill': {
-                                'color': {
-                                    'rgbColor': {
-                                        'red': 0.0,
-                                        'green': 0.0,
-                                        'blue': 0.0
-                                    }
-                                }
-                            }
-                        },
-                        'weight': {'magnitude': 1, 'unit': 'PT'}
-                    }
-                },
-                'fields': 'shapeBackgroundFill,outline'
-            }
-        }]
+                    'weight': {'magnitude': 1, 'unit': 'PT'}
+                }
+            },
+            'fields': 'shapeBackgroundFill,outline'
+        }
+    }]
         
     # Add arrowhead if requested
     if has_arrow:
@@ -1120,38 +1121,67 @@ def draw_connection(service, presentation_id, page_id,
         ).execute()
 
 
-def generate_slides(data: Dict, presentation_title: str = "SysML Visualization"):
+def generate_slides(data: Dict, presentation_title: str = "SysML Visualization", 
+                    presentation_id: str = None):
     """
     Main function to generate Google Slides from parsed SysML data.
+    
+    Args:
+        data: Dictionary with parts, actors, use_cases, connections, hierarchy
+        presentation_title: Title for new presentation (ignored if presentation_id provided)
+        presentation_id: Optional existing presentation ID to update instead of creating new
     """
     # Authenticate and get service
     service = authenticate_google_slides()
     
-    # Create new presentation
-    presentation_id = create_presentation(service, presentation_title)
+    # Use existing presentation or create new one
+    if presentation_id:
+        print(f"Using existing presentation: {presentation_id}")
+        try:
+            # Verify presentation exists
+            presentation = service.presentations().get(presentationId=presentation_id).execute()
+        except Exception as e:
+            raise Exception(f"Could not access presentation {presentation_id}: {e}")
+    else:
+        # Create new presentation
+        presentation_id = create_presentation(service, presentation_title)
     
-    # Get the first slide page ID
+    # Get the first slide page ID (create slide if it doesn't exist)
     presentation = service.presentations().get(presentationId=presentation_id).execute()
-    page_id = presentation.get('slides')[0]['objectId']
+    slides = presentation.get('slides', [])
     
-    # Set slide background to white and remove placeholders
+    if not slides:
+        # Create a new slide if presentation is empty
+        slide_request = service.presentations().batchUpdate(
+            presentationId=presentation_id,
+            body={
+                'requests': [{
+                    'createSlide': {
+                        'objectId': 'slide_0'
+                    }
+                }]
+            }
+        ).execute()
+        presentation = service.presentations().get(presentationId=presentation_id).execute()
+        slides = presentation.get('slides', [])
+    
+    page_id = slides[0]['objectId']
+    
+    # Clear all existing elements on the slide
     try:
         page_elements = presentation.get('slides')[0].get('pageElements', [])
         delete_requests = []
         
+        # Delete ALL existing elements (not just placeholders)
         for element in page_elements:
-            shape = element.get('shape', {})
-            placeholder = shape.get('placeholder', {})
-            if placeholder:
-                placeholder_type = placeholder.get('type')
-                if placeholder_type in ['TITLE', 'SUBTITLE', 'CENTERED_TITLE']:
-                    delete_requests.append({
-                        'deleteObject': {
-                            'objectId': element.get('objectId')
-                        }
-                    })
+            delete_requests.append({
+                'deleteObject': {
+                    'objectId': element.get('objectId')
+                }
+            })
         
-        requests = [{
+        # Build clear requests list with background update
+        clear_requests = [{
             'updatePageProperties': {
                 'objectId': page_id,
                 'pageProperties': {
@@ -1171,17 +1201,19 @@ def generate_slides(data: Dict, presentation_title: str = "SysML Visualization")
             }
         }]
         
-        requests.extend(delete_requests)
+        clear_requests.extend(delete_requests)
         
-        if requests:
+        if clear_requests:
             service.presentations().batchUpdate(
                 presentationId=presentation_id,
-                body={'requests': requests}
+                body={'requests': clear_requests}
             ).execute()
             if delete_requests:
-                print("✓ Slide background set to white and placeholders removed")
+                print(f"✓ Cleared {len(delete_requests)} existing elements from slide")
+                # Refresh presentation after deletion
+                presentation = service.presentations().get(presentationId=presentation_id).execute()
     except Exception as e:
-        print(f"Warning: Could not set background: {e}")
+        print(f"Warning: Could not clear existing content: {e}")
     
     # Use professional SysML-style layout
     layout = calculate_professional_layout(data)

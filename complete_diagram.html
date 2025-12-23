@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete OpsCon UAV-based Aircraft Inspection Diagram</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #1a73e8;
+            text-align: center;
+        }
+        svg {
+            border: 2px solid #1a73e8;
+            background-color: #f8f9fa;
+            display: block;
+            margin: 20px auto;
+        }
+        .system-rect {
+            fill: #f8f9fa;
+            stroke: #1a73e8;
+            stroke-width: 3;
+        }
+        .part-rect {
+            fill: #e8f0fe;
+            stroke: #1a73e8;
+            stroke-width: 2;
+        }
+        .actor-circle {
+            fill: #fff9c4;
+            stroke: #1a73e8;
+            stroke-width: 2;
+        }
+        .use-case-ellipse {
+            fill: #ffffff;
+            stroke: #1a73e8;
+            stroke-width: 2;
+        }
+        .subject-round-rect {
+            fill: #c8e6c9;
+            stroke: #1a73e8;
+            stroke-width: 2;
+        }
+        .connection-line {
+            stroke: #000000;
+            stroke-width: 2;
+            fill: none;
+        }
+        .connection-dashed {
+            stroke: #666666;
+            stroke-width: 2;
+            stroke-dasharray: 5,5;
+            fill: none;
+        }
+        .arrowhead {
+            fill: #000000;
+        }
+        .text-label {
+            font-size: 12px;
+            font-weight: bold;
+            text-anchor: middle;
+            dominant-baseline: middle;
+        }
+        .legend {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 5px;
+        }
+        .legend-item {
+            display: inline-block;
+            margin: 10px 20px;
+            vertical-align: middle;
+        }
+        .legend-shape {
+            display: inline-block;
+            width: 40px;
+            height: 30px;
+            margin-right: 10px;
+            vertical-align: middle;
+            border: 2px solid #1a73e8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Approach 1 - Complete OpsCon UAV-based Aircraft Inspection</h1>
+        <svg width="1200" height="700" viewBox="0 0 1200 700">
+            <!-- System Container -->
+            <rect x="200" y="100" width="800" height="550" class="system-rect" rx="5"/>
+            <text x="600" y="130" class="text-label" font-size="16">OpsCon_UAV_basedAircraftInspection</text>
+            
+            <!-- Use Case (Ellipse) -->
+            <ellipse cx="600" cy="250" rx="140" ry="50" class="use-case-ellipse"/>
+            <text x="600" y="250" class="text-label">InspectAircraftAutomatically</text>
+            
+            <!-- Parts (Rectangles) -->
+            <rect x="250" y="450" width="120" height="60" class="part-rect" rx="3"/>
+            <text x="310" y="480" class="text-label">Human</text>
+            
+            <rect x="400" y="550" width="120" height="60" class="part-rect" rx="3"/>
+            <text x="460" y="580" class="text-label">Environment</text>
+            
+            <rect x="550" y="550" width="120" height="60" class="part-rect" rx="3"/>
+            <text x="610" y="580" class="text-label">Drone</text>
+            
+            <rect x="700" y="550" width="120" height="60" class="part-rect" rx="3"/>
+            <text x="760" y="580" class="text-label">Aircraft</text>
+            
+            <!-- Actors (Circles) -->
+            <circle cx="250" cy="200" r="50" class="actor-circle"/>
+            <text x="250" y="200" class="text-label" font-size="11">DroneOperator</text>
+            
+            <circle cx="900" cy="200" r="50" class="actor-circle"/>
+            <text x="900" y="200" class="text-label" font-size="11">CandidateAircraft</text>
+            
+            <circle cx="400" cy="150" r="55" class="actor-circle"/>
+            <text x="400" y="150" class="text-label" font-size="10">InspectionEnvironment</text>
+            
+            <!-- Subject (Round Rectangle) -->
+            <rect x="570" cy="350" width="60" height="40" class="subject-round-rect" rx="10"/>
+            <text x="600" y="370" class="text-label" font-size="12">SoI</text>
+            
+            <!-- Connections -->
+            <!-- Human to DroneOperator -->
+            <line x1="310" y1="450" x2="250" y2="250" class="connection-line"/>
+            <polygon points="250,250 245,240 255,240" class="arrowhead"/>
+            
+            <!-- Environment to InspectionEnvironment -->
+            <line x1="400" y1="550" x2="400" y2="205" class="connection-line"/>
+            <polygon points="400,205 395,195 405,195" class="arrowhead"/>
+            
+            <!-- Drone to SoI -->
+            <line x1="610" y1="550" x2="600" y2="390" class="connection-line"/>
+            <polygon points="600,390 595,380 605,380" class="arrowhead"/>
+            
+            <!-- Aircraft to CandidateAircraft -->
+            <line x1="760" y1="550" x2="900" y2="250" class="connection-line"/>
+            <polygon points="900,250 895,240 905,240" class="arrowhead"/>
+            
+            <!-- DroneOperator to Use Case -->
+            <line x1="300" y1="200" x2="460" y2="250" class="connection-line"/>
+            <polygon points="460,250 455,240 465,240" class="arrowhead"/>
+            
+            <!-- CandidateAircraft to Use Case -->
+            <line x1="850" y1="200" x2="740" y2="250" class="connection-line"/>
+            <polygon points="740,250 735,240 745,240" class="arrowhead"/>
+            
+            <!-- InspectionEnvironment to Use Case -->
+            <line x1="455" y1="150" x2="520" y2="250" class="connection-line"/>
+            <polygon points="520,250 515,240 525,240" class="arrowhead"/>
+            
+            <!-- SoI to Use Case -->
+            <line x1="600" y1="350" x2="600" y2="300" class="connection-dashed"/>
+            <polygon points="600,300 595,290 605,290" class="arrowhead"/>
+        </svg>
+        
+        <div class="legend">
+            <h3>Legend - Element Types:</h3>
+            <div class="legend-item">
+                <div class="legend-shape" style="background: #f8f9fa; border-radius: 0;"></div>
+                <span><strong>System Container</strong> (Rectangle)</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-shape" style="background: #e8f0fe; border-radius: 0;"></div>
+                <span><strong>Parts</strong> (Rectangle)</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-shape" style="background: #fff9c4; border-radius: 50%; width: 30px; height: 30px;"></div>
+                <span><strong>Actors</strong> (Circle)</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-shape" style="background: #ffffff; border-radius: 50%; width: 40px; height: 20px;"></div>
+                <span><strong>Use Case</strong> (Ellipse)</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-shape" style="background: #c8e6c9; border-radius: 10px;"></div>
+                <span><strong>Subject</strong> (Round Rectangle)</span>
+            </div>
+        </div>
+        
+        <div style="margin-top: 20px; padding: 15px; background: #e8f5e9; border-radius: 5px;">
+            <h3>Connections Summary:</h3>
+            <ul>
+                <li><strong>Human → DroneOperator</strong> (Part to Actor)</li>
+                <li><strong>Environment → InspectionEnvironment</strong> (Part to Actor)</li>
+                <li><strong>Drone → SoI</strong> (Part to Subject)</li>
+                <li><strong>Aircraft → CandidateAircraft</strong> (Part to Actor)</li>
+                <li><strong>DroneOperator → InspectAircraftAutomatically</strong> (Actor participates in Use Case)</li>
+                <li><strong>CandidateAircraft → InspectAircraftAutomatically</strong> (Actor participates in Use Case)</li>
+                <li><strong>InspectionEnvironment → InspectAircraftAutomatically</strong> (Actor participates in Use Case)</li>
+                <li><strong>SoI → InspectAircraftAutomatically</strong> (Subject of Use Case - dashed line)</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
+
+
+

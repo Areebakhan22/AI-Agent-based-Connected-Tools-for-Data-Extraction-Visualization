@@ -39,6 +39,8 @@ def main():
                        help='Ollama model name (default: llama3)')
     parser.add_argument('--format', choices=['google', 'pptx'], default='google',
                        help='Output format: google (Google Slides) or pptx (PowerPoint)')
+    parser.add_argument('--google-slides-url', type=str, default=None,
+                       help='Google Slides URL to update existing presentation (e.g., https://docs.google.com/presentation/d/ID/edit)')
     
     args = parser.parse_args()
     sysml_file = args.sysml_file
@@ -98,10 +100,34 @@ def main():
     else:  # Google Slides
         print("\nGenerating Google Slides visualization...")
         try:
-            presentation_id, url = generate_slides(data, f"SysML: {sysml_file}")
-            print(f"\n✓ Success! Presentation created.")
-            print(f"  Presentation ID: {presentation_id}")
-            print(f"  View at: {url}")
+            # Extract presentation ID from URL if provided
+            existing_presentation_id = None
+            if args.google_slides_url:
+                # Extract ID from URL pattern: /d/PRESENTATION_ID/
+                if '/d/' in args.google_slides_url:
+                    parts = args.google_slides_url.split('/d/')
+                    if len(parts) > 1:
+                        existing_presentation_id = parts[1].split('/')[0].split('?')[0].split('#')[0].strip()
+                        print(f"Updating existing presentation: {existing_presentation_id}")
+                elif '/' not in args.google_slides_url:
+                    # Direct ID provided
+                    existing_presentation_id = args.google_slides_url
+                    print(f"Updating existing presentation: {existing_presentation_id}")
+            
+            if existing_presentation_id:
+                presentation_id, url = generate_slides(
+                    data, 
+                    f"SysML: {sysml_file}",
+                    presentation_id=existing_presentation_id
+                )
+                print(f"\n✓ Success! Presentation updated.")
+                print(f"  Presentation ID: {presentation_id}")
+                print(f"  View at: {url}")
+            else:
+                presentation_id, url = generate_slides(data, f"SysML: {sysml_file}")
+                print(f"\n✓ Success! Presentation created.")
+                print(f"  Presentation ID: {presentation_id}")
+                print(f"  View at: {url}")
         except FileNotFoundError as e:
             print(f"\n✗ Error: {e}")
             print("\nTo use Google Slides API, you need to:")
@@ -113,6 +139,8 @@ def main():
             sys.exit(1)
         except Exception as e:
             print(f"\n✗ Error generating slides: {e}")
+            import traceback
+            traceback.print_exc()
             sys.exit(1)
 
 
