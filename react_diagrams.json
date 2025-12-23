@@ -1,0 +1,441 @@
+{
+  "system_name": "OpsCon_UAV_basedAircraftInspection",
+  "diagrams": [
+    {
+      "id": "full_combined",
+      "title": "Complete OpsCon_UAV_basedAircraftInspection Diagram",
+      "nodes": [
+        {
+          "id": "part_OpsCon_UAV_basedAircraftInspection",
+          "name": "OpsCon_UAV_basedAircraftInspection",
+          "type": "part",
+          "width": 140,
+          "height": 60,
+          "x": 185.01988197720573,
+          "y": 198.1066388808756,
+          "doc": "",
+          "fx": 185.01988197720573,
+          "fy": 198.1066388808756
+        },
+        {
+          "id": "part_Human",
+          "name": "Human",
+          "type": "part",
+          "width": 140,
+          "height": 60,
+          "x": 211.46960578384363,
+          "y": 384.6303317354833,
+          "doc": "",
+          "fx": 211.46960578384363,
+          "fy": 384.6303317354833
+        },
+        {
+          "id": "part_Environment",
+          "name": "Environment",
+          "type": "part",
+          "width": 140,
+          "height": 60,
+          "x": 538.8193109361893,
+          "y": 205.22036132271828,
+          "doc": "",
+          "fx": 538.8193109361893,
+          "fy": 205.22036132271828
+        },
+        {
+          "id": "part_Drone",
+          "name": "Drone",
+          "type": "part",
+          "width": 140,
+          "height": 60,
+          "x": 585.0,
+          "y": 341.3039229103872,
+          "doc": "",
+          "fx": 585.0,
+          "fy": 341.3039229103872
+        },
+        {
+          "id": "part_Aircraft",
+          "name": "Aircraft",
+          "type": "part",
+          "width": 140,
+          "height": 60,
+          "x": 135.0,
+          "y": 310.134597422708,
+          "doc": "",
+          "fx": 135.0,
+          "fy": 310.134597422708
+        },
+        {
+          "id": "part_DroneOperator",
+          "name": "DroneOperator",
+          "type": "part",
+          "width": 140,
+          "height": 60,
+          "x": 294.16292864095504,
+          "y": 294.1912315317707,
+          "doc": "",
+          "fx": 294.16292864095504,
+          "fy": 294.1912315317707
+        },
+        {
+          "id": "part_CandidateAircraft",
+          "name": "CandidateAircraft",
+          "type": "part",
+          "width": 140,
+          "height": 60,
+          "x": 400.06079799264205,
+          "y": 358.27302519913053,
+          "doc": "",
+          "fx": 400.06079799264205,
+          "fy": 358.27302519913053
+        },
+        {
+          "id": "part_InspectionEnvironment",
+          "name": "InspectionEnvironment",
+          "type": "part",
+          "width": 140,
+          "height": 60,
+          "x": 482.5801038096196,
+          "y": 296.5928216462171,
+          "doc": "",
+          "fx": 482.5801038096196,
+          "fy": 296.5928216462171
+        },
+        {
+          "id": "usecase_InspectAircraftAutomatically",
+          "name": "InspectAircraftAutomatically",
+          "type": "use_case",
+          "width": 280,
+          "height": 90,
+          "x": 335.345268503052,
+          "y": 195.36966826451672,
+          "doc": "",
+          "objectives": [
+            "FlyAutomatically",
+            "AquireAircraftExternalVisuuaImages",
+            "Safe_UAV_Flight"
+          ],
+          "fx": 335.345268503052,
+          "fy": 195.36966826451672
+        },
+        {
+          "id": "soi",
+          "name": "SoI",
+          "type": "soi",
+          "width": 80,
+          "height": 50,
+          "x": 0,
+          "y": 0
+        }
+      ],
+      "links": [
+        {
+          "source": "part_Human",
+          "target": "part_DroneOperator",
+          "dashed": false,
+          "fromName": "Human",
+          "toName": "DroneOperator"
+        },
+        {
+          "source": "part_Environment",
+          "target": "part_InspectionEnvironment",
+          "dashed": false,
+          "fromName": "Environment",
+          "toName": "InspectionEnvironment"
+        },
+        {
+          "source": "part_Drone",
+          "target": "soi",
+          "dashed": true,
+          "fromName": "Drone",
+          "toName": "SoI"
+        },
+        {
+          "source": "part_Aircraft",
+          "target": "part_CandidateAircraft",
+          "dashed": false,
+          "fromName": "Aircraft",
+          "toName": "CandidateAircraft"
+        }
+      ],
+      "metadata": {
+        "is_full_diagram": true,
+        "system_boundary": "OpsCon_UAV_basedAircraftInspection",
+        "relationship": null
+      }
+    },
+    {
+      "id": "rel_0",
+      "title": "Human \u2192 DroneOperator",
+      "nodes": [
+        {
+          "id": "part_Human",
+          "name": "Human",
+          "type": "part",
+          "width": 140,
+          "height": 60,
+          "x": 138.4,
+          "y": 320,
+          "doc": "",
+          "fx": 138.4,
+          "fy": 320
+        },
+        {
+          "id": "part_DroneOperator",
+          "name": "DroneOperator",
+          "type": "part",
+          "width": 140,
+          "height": 60,
+          "x": 500.0,
+          "y": 242.5,
+          "doc": "",
+          "fx": 500.0,
+          "fy": 242.5
+        },
+        {
+          "id": "usecase_InspectAircraftAutomatically",
+          "name": "InspectAircraftAutomatically",
+          "type": "use_case",
+          "width": 280,
+          "height": 90,
+          "x": 0,
+          "y": 0,
+          "doc": "",
+          "objectives": [
+            "FlyAutomatically",
+            "AquireAircraftExternalVisuuaImages",
+            "Safe_UAV_Flight"
+          ]
+        },
+        {
+          "id": "soi",
+          "name": "SoI",
+          "type": "soi",
+          "width": 80,
+          "height": 50,
+          "x": 0,
+          "y": 0
+        }
+      ],
+      "links": [
+        {
+          "source": "part_Human",
+          "target": "part_DroneOperator",
+          "dashed": false,
+          "fromName": "Human",
+          "toName": "DroneOperator"
+        }
+      ],
+      "metadata": {
+        "is_full_diagram": false,
+        "system_boundary": "OpsCon_UAV_basedAircraftInspection",
+        "relationship": {
+          "from": "Human",
+          "to": "DroneOperator"
+        }
+      }
+    },
+    {
+      "id": "rel_1",
+      "title": "Environment \u2192 InspectionEnvironment",
+      "nodes": [
+        {
+          "id": "part_Environment",
+          "name": "Environment",
+          "type": "part",
+          "width": 140,
+          "height": 60,
+          "x": 138.4,
+          "y": 320,
+          "doc": "",
+          "fx": 138.4,
+          "fy": 320
+        },
+        {
+          "id": "part_InspectionEnvironment",
+          "name": "InspectionEnvironment",
+          "type": "part",
+          "width": 140,
+          "height": 60,
+          "x": 500.0,
+          "y": 242.5,
+          "doc": "",
+          "fx": 500.0,
+          "fy": 242.5
+        },
+        {
+          "id": "usecase_InspectAircraftAutomatically",
+          "name": "InspectAircraftAutomatically",
+          "type": "use_case",
+          "width": 280,
+          "height": 90,
+          "x": 0,
+          "y": 0,
+          "doc": "",
+          "objectives": [
+            "FlyAutomatically",
+            "AquireAircraftExternalVisuuaImages",
+            "Safe_UAV_Flight"
+          ]
+        },
+        {
+          "id": "soi",
+          "name": "SoI",
+          "type": "soi",
+          "width": 80,
+          "height": 50,
+          "x": 0,
+          "y": 0
+        }
+      ],
+      "links": [
+        {
+          "source": "part_Environment",
+          "target": "part_InspectionEnvironment",
+          "dashed": false,
+          "fromName": "Environment",
+          "toName": "InspectionEnvironment"
+        }
+      ],
+      "metadata": {
+        "is_full_diagram": false,
+        "system_boundary": "OpsCon_UAV_basedAircraftInspection",
+        "relationship": {
+          "from": "Environment",
+          "to": "InspectionEnvironment"
+        }
+      }
+    },
+    {
+      "id": "rel_2",
+      "title": "Drone \u2192 SoI",
+      "nodes": [
+        {
+          "id": "part_Drone",
+          "name": "Drone",
+          "type": "part",
+          "width": 140,
+          "height": 60,
+          "x": 0,
+          "y": 0,
+          "doc": ""
+        },
+        {
+          "id": "usecase_InspectAircraftAutomatically",
+          "name": "InspectAircraftAutomatically",
+          "type": "use_case",
+          "width": 280,
+          "height": 90,
+          "x": 0,
+          "y": 0,
+          "doc": "",
+          "objectives": [
+            "FlyAutomatically",
+            "AquireAircraftExternalVisuuaImages",
+            "Safe_UAV_Flight"
+          ]
+        },
+        {
+          "id": "soi",
+          "name": "SoI",
+          "type": "soi",
+          "width": 80,
+          "height": 50,
+          "x": 138.4,
+          "y": 320,
+          "fx": 138.4,
+          "fy": 320
+        }
+      ],
+      "links": [
+        {
+          "source": "part_Drone",
+          "target": "soi",
+          "dashed": true,
+          "fromName": "Drone",
+          "toName": "SoI"
+        }
+      ],
+      "metadata": {
+        "is_full_diagram": false,
+        "system_boundary": "OpsCon_UAV_basedAircraftInspection",
+        "relationship": {
+          "from": "Drone",
+          "to": "SoI"
+        }
+      }
+    },
+    {
+      "id": "rel_3",
+      "title": "Aircraft \u2192 CandidateAircraft",
+      "nodes": [
+        {
+          "id": "part_Aircraft",
+          "name": "Aircraft",
+          "type": "part",
+          "width": 140,
+          "height": 60,
+          "x": 138.4,
+          "y": 320,
+          "doc": "",
+          "fx": 138.4,
+          "fy": 320
+        },
+        {
+          "id": "part_CandidateAircraft",
+          "name": "CandidateAircraft",
+          "type": "part",
+          "width": 140,
+          "height": 60,
+          "x": 500.0,
+          "y": 242.5,
+          "doc": "",
+          "fx": 500.0,
+          "fy": 242.5
+        },
+        {
+          "id": "usecase_InspectAircraftAutomatically",
+          "name": "InspectAircraftAutomatically",
+          "type": "use_case",
+          "width": 280,
+          "height": 90,
+          "x": 0,
+          "y": 0,
+          "doc": "",
+          "objectives": [
+            "FlyAutomatically",
+            "AquireAircraftExternalVisuuaImages",
+            "Safe_UAV_Flight"
+          ]
+        },
+        {
+          "id": "soi",
+          "name": "SoI",
+          "type": "soi",
+          "width": 80,
+          "height": 50,
+          "x": 0,
+          "y": 0
+        }
+      ],
+      "links": [
+        {
+          "source": "part_Aircraft",
+          "target": "part_CandidateAircraft",
+          "dashed": false,
+          "fromName": "Aircraft",
+          "toName": "CandidateAircraft"
+        }
+      ],
+      "metadata": {
+        "is_full_diagram": false,
+        "system_boundary": "OpsCon_UAV_basedAircraftInspection",
+        "relationship": {
+          "from": "Aircraft",
+          "to": "CandidateAircraft"
+        }
+      }
+    }
+  ],
+  "total_diagrams": 5
+}

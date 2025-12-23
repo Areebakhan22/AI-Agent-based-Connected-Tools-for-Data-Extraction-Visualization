@@ -1,0 +1,177 @@
+.system-logs {
+  background: #1e1e1e;
+  border-radius: 8px;
+  margin-top: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.logs-header {
+  background: #2d2d2d;
+  padding: 12px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+  border-bottom: 1px solid #3d3d3d;
+}
+
+.logs-header:hover {
+  background: #353535;
+}
+
+.logs-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  color: #e0e0e0;
+  font-size: 14px;
+}
+
+.logs-icon {
+  font-size: 16px;
+}
+
+.logs-count {
+  background: #4a4a4a;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  color: #fff;
+}
+
+.logs-controls {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.logs-controls button {
+  background: transparent;
+  border: none;
+  color: #b0b0b0;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+.logs-controls button:hover {
+  background: #4a4a4a;
+  color: #fff;
+}
+
+.auto-scroll-btn.active {
+  color: #4caf50;
+}
+
+.logs-content {
+  max-height: 300px;
+  overflow-y: auto;
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+}
+
+.logs-empty {
+  padding: 20px;
+  text-align: center;
+  color: #888;
+  font-style: italic;
+}
+
+.logs-list {
+  padding: 10px;
+}
+
+.log-entry {
+  padding: 8px 12px;
+  margin-bottom: 4px;
+  border-left: 3px solid transparent;
+  border-radius: 4px;
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  word-wrap: break-word;
+  line-height: 1.5;
+}
+
+.log-entry:hover {
+  background: #2a2a2a;
+}
+
+.log-time {
+  color: #888;
+  font-size: 11px;
+  min-width: 80px;
+  flex-shrink: 0;
+}
+
+.log-level {
+  font-weight: 600;
+  min-width: 70px;
+  flex-shrink: 0;
+}
+
+.log-message {
+  flex: 1;
+  color: #e0e0e0;
+}
+
+.log-details {
+  margin-top: 4px;
+  margin-left: 162px;
+  padding: 4px 8px;
+  background: #2a2a2a;
+  border-radius: 4px;
+  font-size: 11px;
+  color: #b0b0b0;
+  white-space: pre-wrap;
+}
+
+.log-default {
+  border-left-color: #666;
+  color: #e0e0e0;
+}
+
+.log-info {
+  border-left-color: #2196f3;
+  color: #90caf9;
+}
+
+.log-success {
+  border-left-color: #4caf50;
+  color: #81c784;
+}
+
+.log-warning {
+  border-left-color: #ff9800;
+  color: #ffb74d;
+}
+
+.log-error {
+  border-left-color: #f44336;
+  color: #e57373;
+}
+
+/* Scrollbar styling */
+.logs-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.logs-content::-webkit-scrollbar-track {
+  background: #1e1e1e;
+}
+
+.logs-content::-webkit-scrollbar-thumb {
+  background: #4a4a4a;
+  border-radius: 4px;
+}
+
+.logs-content::-webkit-scrollbar-thumb:hover {
+  background: #5a5a5a;
+}
+
