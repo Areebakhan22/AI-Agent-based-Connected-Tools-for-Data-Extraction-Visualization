@@ -1,0 +1,26 @@
+.compact-card {
+  margin-bottom: 0.5rem;
+}
+
+.compact-card .card-header {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.85rem;
+}
+
+.compact-card .card-body {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.8rem;
+}
+
+.compact-comment {
+  line-height: 1.4;
+}
+
+.compact-objectives {
+  margin-top: 0.25rem;
+}
+
+.compact-objectives .badge {
+  font-weight: normal;
+  padding: 0.2rem 0.4rem;
+}

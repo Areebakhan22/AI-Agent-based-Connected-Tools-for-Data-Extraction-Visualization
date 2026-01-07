@@ -28,6 +28,20 @@ Thumbs.db
 
 # Generated files
 *.pptx
+generated_images/
+pipeline_output.json
+relationship_images_metadata.json
+pipeline_log.txt
+pipeline_output.log
+
+# Node modules
+node_modules/
+frontend/node_modules/
+
+# Frontend build artifacts
+frontend/public/generated_images/
+frontend/.vite/
+frontend/dist/
 
 # Lock files
 .~lock.*

@@ -1,0 +1,63 @@
+.compact-container {
+  padding: 0.5rem;
+  max-width: 100%;
+}
+
+.compact-container .card {
+  margin-bottom: 0.5rem;
+}
+
+.compact-container .card-header {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.85rem;
+}
+
+.compact-container .card-body {
+  padding: 0.5rem;
+}
+
+.list-group-item {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.8rem;
+  border: none;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.list-group-item:last-child {
+  border-bottom: none;
+}
+
+.list-group-item.active {
+  background-color: #0d6efd;
+  border-color: #0d6efd;
+}
+
+.list-group-item:hover:not(.active) {
+  background-color: #f8f9fa;
+}
+
+/* Ensure image fits nicely */
+.compact-container img {
+  transition: transform 0.2s ease;
+}
+
+.compact-container img:hover {
+  transform: scale(1.02);
+}
+
+/* Compact form controls */
+.compact-container .form-control-sm,
+.compact-container .form-select-sm {
+  font-size: 0.8rem;
+  padding: 0.2rem 0.4rem;
+}
+
+/* Stats cards */
+.compact-container .card-body h5 {
+  font-size: 1.2rem;
+  margin-bottom: 0.1rem;
+}
+
+.compact-container .card-body small {
+  font-size: 0.7rem;
+}
